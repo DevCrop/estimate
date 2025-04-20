@@ -1,7 +1,7 @@
 <?php
 
 $host = 'localhost';
-$dbname = 'cms';
+$dbname = 'nb_table';
 $user = 'root';
 $pass = '';
 $charset = 'utf8mb4';

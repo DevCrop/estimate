@@ -1,0 +1,13 @@
+{
+  "name": "nb_table",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass public/assets/scss/index.scss public/assets/css/style.css",
+    "sass:watch": "sass --watch public/assets/scss/index.scss:public/assets/css/style.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
