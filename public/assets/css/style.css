@@ -452,6 +452,11 @@ template {
   display: none;
 }
 
+.no-estimate-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
 .no-estimate-group {
   background: #fafafa;
   padding: 2rem;
@@ -468,6 +473,9 @@ template {
 }
 .no-estimate-tooltip {
   display: none;
+}
+.no-estimate-item {
+  width: 80%;
 }
 
 /*# sourceMappingURL=style.css.map */

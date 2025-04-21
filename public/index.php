@@ -10,13 +10,25 @@
 
 <?php
 
-$doctors = [
-    ['no' => 1, 'center' => '서울센터', 'name' => '홍길동', 'photo' => 'photo1.jpg'],
-    ['no' => 2, 'center' => '부산센터', 'name' => '이순신', 'photo' => 'photo2.jpg'],
-    ['no' => 3, 'center' => '대구센터', 'name' => '강감찬', 'photo' => 'photo3.jpg'],
-];
-?>
+$db = DB::getInstance();
 
+$estimates = $db->query("
+    SELECT 
+        e.id AS no,
+        e.estimate_code,
+        e.issued_at,
+        e.expired_at,
+        e.total_price,
+        c.company_name,
+        s.name AS staff_name
+    FROM nb_estimate e
+    JOIN nb_client c ON e.client_id = c.id
+    JOIN nb_staff s ON e.staff_id = s.id
+    ORDER BY e.id DESC
+");
+
+
+?>
 
 <main class="my-auto">
     <div class="container">
@@ -30,29 +42,25 @@ $doctors = [
                 <table class="table">
                     <thead>
                         <tr>
-                            <th><input type="checkbox" id="checkAll"></th>
                             <th>NO</th>
-                            <th>센터</th>
-                            <th>성함</th>
-                            <th>사진</th>
-                            <th>수정</th>
+                            <th>견적번호</th>
+                            <th>회사명</th>
+                            <th>담당자</th>
+                            <th>금액</th>
+                            <th>발행일</th>
+                            <th>유효기간</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($doctors as $index => $doc): ?>
+                        <?php foreach ($estimates as $row): ?>
                         <tr>
-                            <td><input type="checkbox" class="row-check"></td>
-                            <td><?= $doc['no'] ?></td>
-                            <td><?= $doc['center'] ?></td>
-                            <td>
-                                <a href="./view.php">
-                                    <?= $doc['name'] ?>
-                                </a>
-                            </td>
-                            <td>
-                                <img src="/uploads/<?= $doc['photo'] ?>" alt="<?= $doc['name'] ?>" width="50">
-                            </td>
-                            <td><a href="#" class="btn-edit">수정</a></td>
+                            <td><?= $row['no'] ?></td>
+                            <td><a href="./view.php?id=<?= $row['no'] ?>"><?= $row['estimate_code'] ?></a></td>
+                            <td><?= $row['company_name'] ?></td>
+                            <td><?= $row['staff_name'] ?></td>
+                            <td><?= number_format($row['total_price']) ?>원</td>
+                            <td><?= $row['issued_at'] ?></td>
+                            <td><?= $row['expired_at'] ?></td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>

@@ -9,8 +9,6 @@
 ?>
 
 
-
-
 <main class="my-auto">
     <div class="py-5">
         <div class="container">
@@ -97,14 +95,16 @@
                         </label>
                     </div>
                     <hr>
+                    <button type="button" data-trigger="add-group">그룹 추가하기</button>
                     <!-- 견적 그룹 생성 -->
-                    <div class="no-estimate-wrap"></div>
+                    <div class="no-estimate-container">
+
+                    </div>
 
                     <hr>
 
                     <!-- 견적 아이템 생성 -->
-                    <button type="submit" class="btn btn-primary">최종저장</button>
-                    <button type="submit" class="btn btn-secondary">임시저장</button>
+                    <button type="submit" class="btn btn-primary" id="save">최종저장</button>
                 </fieldset>
             </form>
         </div>
@@ -112,6 +112,7 @@
 </main>
 
 <script src="<?=ASSETS_URL?>/js/app.js?v=<?=cacheInit?>"></script>
+<script src="<?=ASSETS_URL?>/js/api.js?v=<?=cacheInit?>"></script>
 
 
 
